@@ -174,9 +174,6 @@ export default class BuscaroHr extends React.Component<
     }
   }
 
-  // async componentDidMount(): Promise<void> {
-  // }
-
   onSearch = async (): Promise<void> => {
     if (!this.state.identification) {
       alert("Debes llenar el campo requerido!");
