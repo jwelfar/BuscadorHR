@@ -1,0 +1,21 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "nodeVersion": "14.18.0",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.4.1"
+    },
+    "version": "1.16.1",
+    "libraryName": "buscador-hr",
+    "libraryId": "f1cb698b-1530-434a-a7a5-ca4af5d01bd0",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "buscador-hr",
+    "solutionShortDescription": "buscador-hr description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}

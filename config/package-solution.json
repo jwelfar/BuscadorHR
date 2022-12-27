@@ -1,0 +1,40 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
+  "solution": {
+    "name": "buscador-hr-client-side-solution",
+    "id": "f1cb698b-1530-434a-a7a5-ca4af5d01bd0",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "developer": {
+      "name": "",
+      "websiteUrl": "",
+      "privacyUrl": "",
+      "termsOfUseUrl": "",
+      "mpnId": "Undefined-1.16.1"
+    },
+    "metadata": {
+      "shortDescription": {
+        "default": "buscador-hr description"
+      },
+      "longDescription": {
+        "default": "buscador-hr description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
+    },
+    "features": [
+      {
+        "title": "buscador-hr Feature",
+        "description": "The feature that activates elements of the buscador-hr solution.",
+        "id": "2c391fe6-b8d8-49bb-9266-94c4b7b44360",
+        "version": "1.0.0.0"
+      }
+    ]
+  },
+  "paths": {
+    "zippedPackage": "solution/buscador-hr.sppkg"
+  }
+}
