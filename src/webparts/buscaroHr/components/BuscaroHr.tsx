@@ -114,7 +114,6 @@ export default class BuscaroHr extends React.Component<
         this.setState({
           DatosHR: items,
         });
-        console.log("datoshr", this.state.DatosHR);
       } catch (err) {
         console.log("Error", err);
         err.res.json().then(() => {
@@ -126,22 +125,21 @@ export default class BuscaroHr extends React.Component<
 
   private async getDocType(): Promise<void> {
     try {
-      const docOptions = new Set(
-        this.state.DatosHR.map((a) => {
-          return {
-            key: a.field_8,
-            text: a.field_8,
-          } as IDropdownOption;
-        })
-      );
+      const data = this.state.DatosHR.map((a) => {
+        return {
+          key: a.field_8,
+          text: a.field_8,
+        } as IDropdownOption;
+      });
+      const docOptions = new Set(data.map((a) => JSON.stringify(a)));
       const array: IDropdownOption[] = [];
       docOptions.forEach((ele) => {
-        array.push(ele);
+        array.push(JSON.parse(ele));
+        console.log("elemento", ele);
       });
       this.setState({
         docType: array,
       });
-      console.log(this.state.docType);
     } catch (e) {
       e.res.json().then(() => {
         console.log("Failed to get list items!", e);
@@ -151,22 +149,21 @@ export default class BuscaroHr extends React.Component<
 
   private async getYear(): Promise<void> {
     try {
-      const yearOptions = new Set(
-        this.state.DatosHR.map((a) => {
-          return {
-            key: a.field_9,
-            text: a.field_9,
-          } as IDropdownOption;
-        })
-      );
+      const data = this.state.DatosHR.map((a) => {
+        return {
+          key: a.field_9,
+          text: a.field_9,
+        } as IDropdownOption;
+      });
+
+      const yearOptions = new Set(data.map((a) => JSON.stringify(a)));
       const array: IDropdownOption[] = [];
       yearOptions.forEach((ele) => {
-        array.push(ele);
+        array.push(JSON.parse(ele));
       });
       this.setState({
         Ano: array,
       });
-      console.log(this.state.Ano);
     } catch (e) {
       e.res.json().then(() => {
         console.log("Failed to get list items!", e);
@@ -183,10 +180,24 @@ export default class BuscaroHr extends React.Component<
     await this.getYear();
   };
 
+  onReset = async (): Promise<void> => {
+    this.setState({
+      identification: "",
+      docType: [],
+      selectDocType: { key: "", text: "" },
+      Ano: [],
+      selectAno: { key: "", text: "" },
+      DatosHR: [],
+    });
+  };
+
   public render(): React.ReactElement<IBuscaroHrProps> {
     const dropdownStyles: Partial<IDropdownStyles> = {
       dropdown: { width: 150 },
     };
+
+    const URLactual = document.URL;
+    const newURL = URLactual.slice(0, 68);
 
     return (
       <section>
@@ -241,6 +252,12 @@ export default class BuscaroHr extends React.Component<
               onClick={() => this.onSearch()}
               allowDisabledFocus
             />
+
+            <DefaultButton
+              text="Limpiar búsqueda"
+              onClick={() => this.onReset()}
+              allowDisabledFocus
+            />
           </div>
 
           <br />
@@ -257,9 +274,6 @@ export default class BuscaroHr extends React.Component<
 
               {this.state.DatosHR &&
                 this.state.DatosHR.map((item) => {
-                  const URLactual =
-                    "https://jeduca.sharepoint.com/sites/Desarrollo/pruebaJW";
-
                   return (
                     <tr className={styles.tbody} key={item.Id}>
                       <td style={{ width: "8%" }}>{item.field_4}</td>
@@ -268,7 +282,7 @@ export default class BuscaroHr extends React.Component<
                       <td style={{ width: "27%" }}>{item.field_7}</td>
                       <td style={{ width: "30%" }}>
                         <a
-                          href={`${URLactual}/lab/${item.field_14}`}
+                          href={`${newURL}/lab/${item.field_14}`}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
