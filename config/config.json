@@ -9,11 +9,20 @@
           "manifest": "./src/webparts/buscaroHr/BuscaroHrWebPart.manifest.json"
         }
       ]
+    },
+    "formulario-hr-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/formularioHr/FormularioHrWebPart.js",
+          "manifest": "./src/webparts/formularioHr/FormularioHrWebPart.manifest.json"
+        }
+      ]
     }
   },
   "externals": {},
   "localizedResources": {
     "BuscaroHrWebPartStrings": "lib/webparts/buscaroHr/loc/{locale}.js",
-    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js"
+    "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js",
+    "FormularioHrWebPartStrings": "lib/webparts/formularioHr/loc/{locale}.js"
   }
 }
