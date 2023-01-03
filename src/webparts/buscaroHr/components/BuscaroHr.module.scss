@@ -26,3 +26,13 @@
 td a {
   text-decoration: none;
 }
+:global {
+  #workbenchPageContent,
+  .CanvasComponent.LCS .CanvasZone {
+   
+    max-width: 100% !important;
+  }
+  .CanvasZone > div {
+    max-width: none !important;
+  }
+}
