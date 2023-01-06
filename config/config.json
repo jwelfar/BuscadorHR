@@ -23,6 +23,7 @@
   "localizedResources": {
     "BuscaroHrWebPartStrings": "lib/webparts/buscaroHr/loc/{locale}.js",
     "PropertyControlStrings": "node_modules/@pnp/spfx-property-controls/lib/loc/{locale}.js",
-    "FormularioHrWebPartStrings": "lib/webparts/formularioHr/loc/{locale}.js"
+    "FormularioHrWebPartStrings": "lib/webparts/formularioHr/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
   }
 }

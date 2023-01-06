@@ -72,32 +72,32 @@ export default class BuscaroHr extends React.Component<
       this.props.DatosHR.id?.length > 0
     ) {
       try {
-        let filtro: string;
-        if (
-          this.state.identification &&
-          this.state.selectDocType.key &&
-          this.state.selectAno.key
-        ) {
-          filtro = `field_4 eq '${this.state.identification}' and field_8 eq '${this.state.selectDocType.key}' and field_9 eq '${this.state.selectAno.key}'`;
-        } else if (
-          this.state.identification &&
-          this.state.selectDocType.key &&
-          !this.state.selectAno.key
-        ) {
-          filtro = `field_4 eq '${this.state.identification}' and field_8 eq '${this.state.selectDocType.key}'`;
-        } else if (
-          this.state.identification &&
-          !this.state.selectDocType.key &&
-          this.state.selectAno.key
-        ) {
-          filtro = `field_4 eq '${this.state.identification}' and field_9 eq '${this.state.selectAno.key}'`;
-        } else if (
-          this.state.identification &&
-          !this.state.selectDocType.key &&
-          !this.state.selectAno.key
-        ) {
-          filtro = `field_4 eq '${this.state.identification}'`;
-        }
+        // let filtro: string;
+        // if (
+        //   this.state.identification &&
+        //   this.state.selectDocType.key &&
+        //   this.state.selectAno.key
+        // ) {
+        //   filtro = `field_4 eq '${this.state.identification}' and field_8 eq '${this.state.selectDocType.key}' and field_9 eq '${this.state.selectAno.key}'`;
+        // } else if (
+        //   this.state.identification &&
+        //   this.state.selectDocType.key &&
+        //   !this.state.selectAno.key
+        // ) {
+        //   filtro = `field_4 eq '${this.state.identification}' and field_8 eq '${this.state.selectDocType.key}'`;
+        // } else if (
+        //   this.state.identification &&
+        //   !this.state.selectDocType.key &&
+        //   this.state.selectAno.key
+        // ) {
+        //   filtro = `field_4 eq '${this.state.identification}' and field_9 eq '${this.state.selectAno.key}'`;
+        // } else if (
+        //   this.state.identification &&
+        //  !this.state.selectDocType.key &&
+        //   !this.state.selectAno.key
+        // ) {
+        //   filtro = `field_4 eq '${this.state.identification}'`;
+        // }
         items = await getSP(this.props.context)
           .web.lists.getById(this.props.DatosHR.id)
           .items.select(
@@ -108,8 +108,8 @@ export default class BuscaroHr extends React.Component<
             "field_8",
             "field_9",
             "field_14"
-          )
-          .filter(filtro)();
+          )();
+        // .filter(filtro)();
 
         this.setState({
           DatosHR: items,
@@ -135,7 +135,6 @@ export default class BuscaroHr extends React.Component<
       const array: IDropdownOption[] = [];
       docOptions.forEach((ele) => {
         array.push(JSON.parse(ele));
-        console.log("elemento", ele);
       });
       this.setState({
         docType: array,
