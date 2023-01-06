@@ -1,7 +1,12 @@
 import * as React from "react";
 import styles from "./BuscaroHr.module.scss";
 import { IBuscaroHrProps } from "./IBuscaroHrProps";
-import { DetailsHeader, IColumn, IDetailsHeaderProps, Link } from "office-ui-fabric-react";
+import {
+  DetailsHeader,
+  IColumn,
+  IDetailsHeaderProps,
+  Link,
+} from "office-ui-fabric-react";
 import {
   DefaultButton,
   DetailsList,
@@ -56,72 +61,88 @@ export default class BuscaroHr extends React.Component<
   IBuscaroHrState
 > {
   constructor(props: IBuscaroHrProps) {
-    
     super(props);
     this.renderDetailsHeader = this.renderDetailsHeader.bind(this);
     const newURL = this.props.context.pageContext.web.absoluteUrl;
     const columnas: IColumn[] = [
       {
-        key: 'column1',
-        name: 'Cédula',
-        ariaLabel: 'Column operations for File type, Press to sort on File type',
-        fieldName: 'field_4',
-         isResizable: true,
+        key: "column1",
+        name: "Cédula",
+        ariaLabel:
+          "Column operations for File type, Press to sort on File type",
+        fieldName: "field_4",
+        isResizable: true,
         minWidth: 150,
         maxWidth: 200,
-        onRender: (global: any) => {   return <span>{global.field_4}</span>;
-      }
-    },
-    {
-      key: 'column2',
-      name: 'Nombre',
-      ariaLabel: 'Column operations for File type, Press to sort on File type',
-      fieldName: 'field_5',
-         isResizable: true,
-      minWidth: 150,
-      maxWidth: 200,
-      onRender: (global: any) => {         return <span>{global.field_5}</span>;
-    }
-  },
-    {
-      key: 'column3',
-      name: 'Tipo Documento',
-      ariaLabel: 'Column operations for File type, Press to sort on File type',
-      fieldName: 'field_8',
-      isResizable: true,
-      minWidth: 150,
-      maxWidth: 200,
-      onRender: (global: any) => {         return <span>{global.field_8}</span>;
-    }
-  },
-    {
-      key: 'column4',
-      name: 'Documento',
-      ariaLabel: 'Column operations for File type, Press to sort on File type',
-      fieldName: 'field_7',
-      isResizable: true,
-      minWidth: 150,
-      maxWidth: 200,
-      onRender: (global: any) => {         return <span>{global.field_7}</span>;
-    }
-  },
-    {
-      key: 'column5',
-      name: 'Ruta',
-      ariaLabel: 'Column operations for File type, Press to sort on File type',
-      fieldName: 'field_14',
-         isResizable: true,
-      minWidth: 150,
-      maxWidth: 200,
-      onRender: (global: any) => {         
-        return <Link href={newURL+"/"+this.props.LaborH.title+"/"+global.field_14} target="_blank">{global?.field_14}</Link>;;
-    },
-  }
-      
+        onRender: (global: any) => {
+          return <span>{global.field_4}</span>;
+        },
+      },
+      {
+        key: "column2",
+        name: "Nombre",
+        ariaLabel:
+          "Column operations for File type, Press to sort on File type",
+        fieldName: "field_5",
+        isResizable: true,
+        minWidth: 150,
+        maxWidth: 200,
+        onRender: (global: any) => {
+          return <span>{global.field_5}</span>;
+        },
+      },
+      {
+        key: "column3",
+        name: "Tipo Documento",
+        ariaLabel:
+          "Column operations for File type, Press to sort on File type",
+        fieldName: "field_8",
+        isResizable: true,
+        minWidth: 150,
+        maxWidth: 200,
+        onRender: (global: any) => {
+          return <span>{global.field_8}</span>;
+        },
+      },
+      {
+        key: "column4",
+        name: "Documento",
+        ariaLabel:
+          "Column operations for File type, Press to sort on File type",
+        fieldName: "field_7",
+        isResizable: true,
+        minWidth: 150,
+        maxWidth: 200,
+        onRender: (global: any) => {
+          return <span>{global.field_7}</span>;
+        },
+      },
+      {
+        key: "column5",
+        name: "Ruta",
+        ariaLabel:
+          "Column operations for File type, Press to sort on File type",
+        fieldName: "field_14",
+        isResizable: true,
+        minWidth: 150,
+        maxWidth: 200,
+        onRender: (global: any) => {
+          return (
+            <Link
+              href={
+                newURL + "/" + this.props.LaborH.title + "/" + global.field_14
+              }
+              target="_blank"
+            >
+              {global?.field_14}
+            </Link>
+          );
+        },
+      },
     ];
-   
+
     this.state = {
-      columns:columnas,
+      columns: columnas,
       identification: "",
       docType: [],
       selectDocType: { key: "", text: "" },
@@ -130,14 +151,9 @@ export default class BuscaroHr extends React.Component<
       DatosHR: [],
     };
   }
-  
-  private renderDetailsHeader(detailsHeaderProps: IDetailsHeaderProps) {
-    return (
-      <DetailsHeader
-        {...detailsHeaderProps}
 
-      />
-    );
+  private renderDetailsHeader(detailsHeaderProps: IDetailsHeaderProps) {
+    return <DetailsHeader {...detailsHeaderProps} />;
   }
   private async getListContent(): Promise<void> {
     let items: [];
@@ -146,32 +162,32 @@ export default class BuscaroHr extends React.Component<
       this.props.DatosHR.id?.length > 0
     ) {
       try {
-        // let filtro: string;
-        // if (
-        //   this.state.identification &&
-        //   this.state.selectDocType.key &&
-        //   this.state.selectAno.key
-        // ) {
-        //   filtro = `field_4 eq '${this.state.identification}' and field_8 eq '${this.state.selectDocType.key}' and field_9 eq '${this.state.selectAno.key}'`;
-        // } else if (
-        //   this.state.identification &&
-        //   this.state.selectDocType.key &&
-        //   !this.state.selectAno.key
-        // ) {
-        //   filtro = `field_4 eq '${this.state.identification}' and field_8 eq '${this.state.selectDocType.key}'`;
-        // } else if (
-        //   this.state.identification &&
-        //   !this.state.selectDocType.key &&
-        //   this.state.selectAno.key
-        // ) {
-        //   filtro = `field_4 eq '${this.state.identification}' and field_9 eq '${this.state.selectAno.key}'`;
-        // } else if (
-        //   this.state.identification &&
-        //  !this.state.selectDocType.key &&
-        //   !this.state.selectAno.key
-        // ) {
-        //   filtro = `field_4 eq '${this.state.identification}'`;
-        // }
+        let filtro: string;
+        if (
+          this.state.identification &&
+          this.state.selectDocType.key &&
+          this.state.selectAno.key
+        ) {
+          filtro = `field_4 eq '${this.state.identification}' and field_8 eq '${this.state.selectDocType.key}' and field_9 eq '${this.state.selectAno.key}'`;
+        } else if (
+          this.state.identification &&
+          this.state.selectDocType.key &&
+          !this.state.selectAno.key
+        ) {
+          filtro = `field_4 eq '${this.state.identification}' and field_8 eq '${this.state.selectDocType.key}'`;
+        } else if (
+          this.state.identification &&
+          !this.state.selectDocType.key &&
+          this.state.selectAno.key
+        ) {
+          filtro = `field_4 eq '${this.state.identification}' and field_9 eq '${this.state.selectAno.key}'`;
+        } else if (
+          this.state.identification &&
+          !this.state.selectDocType.key &&
+          !this.state.selectAno.key
+        ) {
+          filtro = `field_4 eq '${this.state.identification}'`;
+        }
         items = await getSP(this.props.context)
           .web.lists.getById(this.props.DatosHR.id)
           .items.select(
@@ -182,8 +198,8 @@ export default class BuscaroHr extends React.Component<
             "field_8",
             "field_9",
             "field_14"
-          )();
-        // .filter(filtro)();
+          )
+          .filter(filtro)();
 
         this.setState({
           DatosHR: items,
@@ -263,83 +279,86 @@ export default class BuscaroHr extends React.Component<
       DatosHR: [],
     });
   };
-  
+
   public render(): React.ReactElement<IBuscaroHrProps> {
     const dropdownStyles: Partial<IDropdownStyles> = {
       dropdown: { width: 150 },
     };
 
-   
-   
-
     return (
-      <><section>
-        <div>
-          <div className={styles.fristRow__container}>
-            <TextField
-              label="Identificación"
-              id="identification"
-              value={this.state.identification}
-              onChange={(
-                event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
-                newValue?: string
-              ) => {
-                this.setState({
-                  identification: newValue,
-                });
-              } } />
+      <>
+        <section>
+          <div>
+            <div className={styles.fristRow__container}>
+              <TextField
+                label="Identificación"
+                id="identification"
+                value={this.state.identification}
+                onChange={(
+                  event: React.FormEvent<
+                    HTMLInputElement | HTMLTextAreaElement
+                  >,
+                  newValue?: string
+                ) => {
+                  this.setState({
+                    identification: newValue,
+                  });
+                }}
+              />
 
-            <Dropdown
-              placeholder="Select an option"
-              label="Tipo de documento"
-              options={this.state.docType}
-              styles={dropdownStyles}
-              onChange={(
-                event: React.FormEvent<HTMLDivElement>,
-                item: IDropdownOption
-              ) => {
-                this.setState({
-                  selectDocType: item,
-                });
-              } } />
+              <Dropdown
+                placeholder="Select an option"
+                label="Tipo de documento"
+                options={this.state.docType}
+                styles={dropdownStyles}
+                onChange={(
+                  event: React.FormEvent<HTMLDivElement>,
+                  item: IDropdownOption
+                ) => {
+                  this.setState({
+                    selectDocType: item,
+                  });
+                }}
+              />
 
-            <Dropdown
-              placeholder="Select an option"
-              label="Año"
-              options={this.state.Ano}
-              styles={dropdownStyles}
-              onChange={(
-                event: React.FormEvent<HTMLDivElement>,
-                item: IDropdownOption
-              ) => {
-                this.setState({
-                  selectAno: item,
-                });
-              } } />
+              <Dropdown
+                placeholder="Select an option"
+                label="Año"
+                options={this.state.Ano}
+                styles={dropdownStyles}
+                onChange={(
+                  event: React.FormEvent<HTMLDivElement>,
+                  item: IDropdownOption
+                ) => {
+                  this.setState({
+                    selectAno: item,
+                  });
+                }}
+              />
 
-            <DefaultButton
-              text="Buscar"
-              onClick={() => this.onSearch()}
-              allowDisabledFocus />
+              <DefaultButton
+                text="Buscar"
+                onClick={() => this.onSearch()}
+                allowDisabledFocus
+              />
 
-            <DefaultButton
-              text="Limpiar búsqueda"
-              onClick={() => this.onReset()}
-              allowDisabledFocus />
+              <DefaultButton
+                text="Limpiar búsqueda"
+                onClick={() => this.onReset()}
+                allowDisabledFocus
+              />
+            </div>
+
+            <br />
+            <DetailsList
+              layoutMode={DetailsListLayoutMode.justified}
+              items={this.state.DatosHR}
+              columns={this.state.columns}
+              compact={true}
+              setKey="set"
+            />
           </div>
-
-          <br />
-          <DetailsList
-          layoutMode={DetailsListLayoutMode.justified}
-          items={ this.state.DatosHR}
-          columns={this.state.columns}
-          compact={true}
-          setKey="set"
-
-           />
-        </div>
-
-      </section>
+        </section>
       </>
     );
   }
