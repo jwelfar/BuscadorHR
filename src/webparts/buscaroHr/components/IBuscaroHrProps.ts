@@ -6,4 +6,5 @@ export interface IBuscaroHrProps {
   Ano: any;
   context: WebPartContext;
   DatosHR: any;
+  LaborH:any;
 }

@@ -1,9 +1,11 @@
 import * as React from "react";
 import styles from "./BuscaroHr.module.scss";
 import { IBuscaroHrProps } from "./IBuscaroHrProps";
-
+import { DetailsHeader, IColumn, IDetailsHeaderProps, Link } from "office-ui-fabric-react";
 import {
   DefaultButton,
+  DetailsList,
+  DetailsListLayoutMode,
   Dropdown,
   IDropdownOption,
   IDropdownStyles,
@@ -31,6 +33,7 @@ export interface IDetailsListItem {
 }
 
 export interface IBuscaroHrState {
+  columns: IColumn[];
   identification: string;
   docType: IDropdownOption[];
   selectDocType: IDropdownOption;
@@ -53,9 +56,72 @@ export default class BuscaroHr extends React.Component<
   IBuscaroHrState
 > {
   constructor(props: IBuscaroHrProps) {
+    
     super(props);
-
+    this.renderDetailsHeader = this.renderDetailsHeader.bind(this);
+    const newURL = this.props.context.pageContext.web.absoluteUrl;
+    const columnas: IColumn[] = [
+      {
+        key: 'column1',
+        name: 'Cédula',
+        ariaLabel: 'Column operations for File type, Press to sort on File type',
+        fieldName: 'field_4',
+         isResizable: true,
+        minWidth: 150,
+        maxWidth: 200,
+        onRender: (global: any) => {   return <span>{global.field_4}</span>;
+      }
+    },
+    {
+      key: 'column2',
+      name: 'Nombre',
+      ariaLabel: 'Column operations for File type, Press to sort on File type',
+      fieldName: 'field_5',
+         isResizable: true,
+      minWidth: 150,
+      maxWidth: 200,
+      onRender: (global: any) => {         return <span>{global.field_5}</span>;
+    }
+  },
+    {
+      key: 'column3',
+      name: 'Tipo Documento',
+      ariaLabel: 'Column operations for File type, Press to sort on File type',
+      fieldName: 'field_8',
+      isResizable: true,
+      minWidth: 150,
+      maxWidth: 200,
+      onRender: (global: any) => {         return <span>{global.field_8}</span>;
+    }
+  },
+    {
+      key: 'column4',
+      name: 'Documento',
+      ariaLabel: 'Column operations for File type, Press to sort on File type',
+      fieldName: 'field_7',
+      isResizable: true,
+      minWidth: 150,
+      maxWidth: 200,
+      onRender: (global: any) => {         return <span>{global.field_7}</span>;
+    }
+  },
+    {
+      key: 'column5',
+      name: 'Ruta',
+      ariaLabel: 'Column operations for File type, Press to sort on File type',
+      fieldName: 'field_14',
+         isResizable: true,
+      minWidth: 150,
+      maxWidth: 200,
+      onRender: (global: any) => {         
+        return <Link href={newURL+"/"+this.props.LaborH.title+"/"+global.field_14} target="_blank">{global?.field_14}</Link>;;
+    },
+  }
+      
+    ];
+   
     this.state = {
+      columns:columnas,
       identification: "",
       docType: [],
       selectDocType: { key: "", text: "" },
@@ -64,7 +130,15 @@ export default class BuscaroHr extends React.Component<
       DatosHR: [],
     };
   }
+  
+  private renderDetailsHeader(detailsHeaderProps: IDetailsHeaderProps) {
+    return (
+      <DetailsHeader
+        {...detailsHeaderProps}
 
+      />
+    );
+  }
   private async getListContent(): Promise<void> {
     let items: [];
     if (
@@ -189,17 +263,17 @@ export default class BuscaroHr extends React.Component<
       DatosHR: [],
     });
   };
-
+  
   public render(): React.ReactElement<IBuscaroHrProps> {
     const dropdownStyles: Partial<IDropdownStyles> = {
       dropdown: { width: 150 },
     };
 
-    const URLactual = document.URL;
-    const newURL = URLactual.slice(0, 68);
+   
+   
 
     return (
-      <section>
+      <><section>
         <div>
           <div className={styles.fristRow__container}>
             <TextField
@@ -213,8 +287,7 @@ export default class BuscaroHr extends React.Component<
                 this.setState({
                   identification: newValue,
                 });
-              }}
-            />
+              } } />
 
             <Dropdown
               placeholder="Select an option"
@@ -228,8 +301,7 @@ export default class BuscaroHr extends React.Component<
                 this.setState({
                   selectDocType: item,
                 });
-              }}
-            />
+              } } />
 
             <Dropdown
               placeholder="Select an option"
@@ -243,58 +315,32 @@ export default class BuscaroHr extends React.Component<
                 this.setState({
                   selectAno: item,
                 });
-              }}
-            />
+              } } />
 
             <DefaultButton
               text="Buscar"
               onClick={() => this.onSearch()}
-              allowDisabledFocus
-            />
+              allowDisabledFocus />
 
             <DefaultButton
               text="Limpiar búsqueda"
               onClick={() => this.onReset()}
-              allowDisabledFocus
-            />
+              allowDisabledFocus />
           </div>
 
           <br />
-          <div>
-            <p>Tabla con el contenido</p>
-            <table className={styles.table__container}>
-              <tr className={styles.thead}>
-                <th style={{ width: "8%" }}>Cédula</th>
-                <th style={{ width: "13%" }}>Nombre</th>
-                <th style={{ width: "17%" }}>Tipo de documento</th>
-                <th style={{ width: "27%" }}>Documento</th>
-                <th style={{ width: "30%" }}>Ruta</th>
-              </tr>
+          <DetailsList
+          layoutMode={DetailsListLayoutMode.justified}
+          items={ this.state.DatosHR}
+          columns={this.state.columns}
+          compact={true}
+          setKey="set"
 
-              {this.state.DatosHR &&
-                this.state.DatosHR.map((item) => {
-                  return (
-                    <tr className={styles.tbody} key={item.Id}>
-                      <td style={{ width: "8%" }}>{item.field_4}</td>
-                      <td style={{ width: "13%" }}>{item.field_5}</td>
-                      <td style={{ width: "17%" }}>{item.field_8}</td>
-                      <td style={{ width: "27%" }}>{item.field_7}</td>
-                      <td style={{ width: "30%" }}>
-                        <a
-                          href={`${newURL}/lab/${item.field_14}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {item.field_14}
-                        </a>
-                      </td>
-                    </tr>
-                  );
-                })}
-            </table>
-          </div>
+           />
         </div>
+
       </section>
+      </>
     );
   }
 }

@@ -21,6 +21,7 @@ export interface IBuscaroHrWebPartProps {
   docType: any;
   Ano: any;
   DatosHR: any;
+  LaborH:any;
 }
 
 export default class BuscaroHrWebPart extends BaseClientSideWebPart<IBuscaroHrWebPartProps> {
@@ -33,6 +34,7 @@ export default class BuscaroHrWebPart extends BaseClientSideWebPart<IBuscaroHrWe
         docType: this.properties.docType,
         Ano: this.properties.Ano,
         DatosHR: this.properties.DatosHR,
+        LaborH:this.properties.LaborH,
       }
     );
 
@@ -77,9 +79,9 @@ export default class BuscaroHrWebPart extends BaseClientSideWebPart<IBuscaroHrWe
                   deferredValidationTime: 0,
                   key: "listPickerFieldId",
                 }),
-                PropertyFieldListPicker("Ano", {
-                  label: "Selecciona la lista de Años",
-                  selectedList: this.properties.Ano,
+                PropertyFieldListPicker("LaborH", {
+                  label: "Selecciona la lista de Archivos",
+                  selectedList: this.properties.LaborH,
                   includeHidden: false,
                   orderBy: PropertyFieldListPickerOrderBy.Title,
                   disabled: false,
