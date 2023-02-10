@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "buscador-hr-client-side-solution",
+    "name": "buscador-hr",
     "id": "f1cb698b-1530-434a-a7a5-ca4af5d01bd0",
     "version": "1.0.0.0",
     "includeClientSideAssets": true,
@@ -16,10 +16,10 @@
     },
     "metadata": {
       "shortDescription": {
-        "default": "buscador-hr description"
+        "default": "buscador-hr"
       },
       "longDescription": {
-        "default": "buscador-hr description"
+        "default": "buscador-hr"
       },
       "screenshotPaths": [],
       "videoUrl": "",
@@ -27,8 +27,8 @@
     },
     "features": [
       {
-        "title": "buscador-hr Feature",
-        "description": "The feature that activates elements of the buscador-hr solution.",
+        "title": "buscador-hr",
+        "description": "Buscador  de hojas de vida y formulario.",
         "id": "2c391fe6-b8d8-49bb-9266-94c4b7b44360",
         "version": "1.0.0.0"
       }

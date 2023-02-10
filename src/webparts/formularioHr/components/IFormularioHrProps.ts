@@ -5,4 +5,6 @@ export interface IFormularioHrProps {
   context: WebPartContext;
   DatosHR: any;
   lab: any;
+  doctype:any;
+  empresa:any;
 }

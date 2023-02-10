@@ -63,7 +63,7 @@ export default class BuscaroHr extends React.Component<
   constructor(props: IBuscaroHrProps) {
     super(props);
     this.renderDetailsHeader = this.renderDetailsHeader.bind(this);
-    const newURL = this.props.context.pageContext.web.absoluteUrl;
+   // const newURL = this.props.context.pageContext.web.absoluteUrl;
     const columnas: IColumn[] = [
       {
         key: "column1",
@@ -105,6 +105,19 @@ export default class BuscaroHr extends React.Component<
         },
       },
       {
+        key: "column3",
+        name: "Categoria",
+        ariaLabel:
+          "Column operations for File type, Press to sort on File type",
+        fieldName: "field_7",
+        isResizable: true,
+        minWidth: 150,
+        maxWidth: 200,
+        onRender: (global: any) => {
+          return <span>{global.field_7}</span>;
+        },
+      },
+      {
         key: "column4",
         name: "Documento",
         ariaLabel:
@@ -118,8 +131,21 @@ export default class BuscaroHr extends React.Component<
         },
       },
       {
+        key: "column4",
+        name: "Fechas",
+        ariaLabel:
+          "Column operations for File type, Press to sort on File type",
+        fieldName: "field_9",
+        isResizable: true,
+        minWidth: 150,
+        maxWidth: 200,
+        onRender: (global: any) => {
+          return <span>{global.field_9}</span>;
+        },
+      },
+      {
         key: "column5",
-        name: "Ruta",
+        name: "Archivo",
         ariaLabel:
           "Column operations for File type, Press to sort on File type",
         fieldName: "field_14",
@@ -127,14 +153,16 @@ export default class BuscaroHr extends React.Component<
         minWidth: 150,
         maxWidth: 200,
         onRender: (global: any) => {
+          console.log("listalab",this.props.LaborH);
+    
           return (
             <Link
               href={
-                newURL + "/" + this.props.LaborH.title + "/" + global.field_14
+                this.props.LaborH.url + "/" + global.field_14.replace('\\img_anglogold', '')
               }
               target="_blank"
             >
-              {global?.field_14}
+              { global.field_14.replace('\\img_anglogold', '')}
             </Link>
           );
         },

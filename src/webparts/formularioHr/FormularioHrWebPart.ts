@@ -17,6 +17,8 @@ export interface IFormularioHrWebPartProps {
   description: string;
   DatosHR: any;
   lab: any;
+  doctype: any;
+  empresa:any;
 }
 
 export default class FormularioHrWebPart extends BaseClientSideWebPart<IFormularioHrWebPartProps> {
@@ -28,6 +30,8 @@ export default class FormularioHrWebPart extends BaseClientSideWebPart<IFormular
         context: this.context,
         DatosHR: this.properties.DatosHR,
         lab: this.properties.lab,
+        doctype:this.properties.doctype,
+        empresa:this.properties.empresa
       }
     );
 
@@ -60,7 +64,7 @@ export default class FormularioHrWebPart extends BaseClientSideWebPart<IFormular
               groupName: strings.BasicGroupName,
               groupFields: [
                 PropertyFieldListPicker("DatosHR", {
-                  label: "Selecciona la lista de DatosHR",
+                  label: "Selecciona la lista de información",
                   selectedList: this.properties.DatosHR,
                   includeHidden: false,
                   orderBy: PropertyFieldListPickerOrderBy.Title,
@@ -73,7 +77,7 @@ export default class FormularioHrWebPart extends BaseClientSideWebPart<IFormular
                   key: "listPickerFieldId",
                 }),
                 PropertyFieldListPicker("lab", {
-                  label: "Selecciona la lista de lab",
+                  label: "Selecciona la lista de archivo",
                   selectedList: this.properties.lab,
                   includeHidden: false,
                   orderBy: PropertyFieldListPickerOrderBy.Title,
@@ -84,6 +88,32 @@ export default class FormularioHrWebPart extends BaseClientSideWebPart<IFormular
                   context: this.context as any,
                   deferredValidationTime: 0,
                   key: "listPickerFieldId1",
+                }),
+                PropertyFieldListPicker("doctype", {
+                  label: "Selecciona la lista de Tipos de documentos",
+                  selectedList: this.properties.doctype,
+                  includeHidden: false,
+                  orderBy: PropertyFieldListPickerOrderBy.Title,
+                  disabled: false,
+                  includeListTitleAndUrl: true,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  context: this.context as any,
+                  deferredValidationTime: 0,
+                  key: "listPickerFieldId2",
+                }),
+                PropertyFieldListPicker("empresa", {
+                  label: "Selecciona la lista de empresa",
+                  selectedList: this.properties.empresa,
+                  includeHidden: false,
+                  orderBy: PropertyFieldListPickerOrderBy.Title,
+                  disabled: false,
+                  includeListTitleAndUrl: true,
+                  onPropertyChange: this.onPropertyPaneFieldChanged,
+                  properties: this.properties,
+                  context: this.context as any,
+                  deferredValidationTime: 0,
+                  key: "listPickerFieldId3",
                 }),
               ],
             },

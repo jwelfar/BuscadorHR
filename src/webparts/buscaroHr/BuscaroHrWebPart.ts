@@ -18,10 +18,10 @@ import { IPropertyPaneConfiguration } from "@microsoft/sp-property-pane";
 
 export interface IBuscaroHrWebPartProps {
   description: string;
-  docType: any;
-  Ano: any;
-  DatosHR: any;
-  LaborH:any;
+  docType: string;
+  Ano: string;
+  DatosHR: string;
+  LaborH:string;
 }
 
 export default class BuscaroHrWebPart extends BaseClientSideWebPart<IBuscaroHrWebPartProps> {

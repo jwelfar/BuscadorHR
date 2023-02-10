@@ -21,6 +21,7 @@
     "title": { "default": "buscaro-Hr" },
     "description": { "default": "buscaro-Hr description" },
     "officeFabricIconFontName": "Page",
+    "loadLegacyFabricCss": true,
     "properties": {
       "description": "buscaro-Hr"
     }
