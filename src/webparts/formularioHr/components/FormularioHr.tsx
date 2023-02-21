@@ -120,8 +120,9 @@ export default class FormularioHr extends React.Component<
   private async getDocType(): Promise<void> {
     try {
       let items: any[]=[];
+      console.log("vea");
       items = await getSP(this.props.context).web.lists
-      .getById(this.props.doctype.id).items.select("Id", "Title")()  
+      .getById(this.props.doctype.id).items.select("Id", "Title","Orden").orderBy("Orden")()  
       items = items.map(a => {
         return { key: a.Id, text: a.Title, data: a };
       });
@@ -356,7 +357,7 @@ export default class FormularioHr extends React.Component<
 
           <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg6">
             <TextField
-              label="Nombre"
+              label="Nombre Persona"
               id="name"
               value={this.state.name}
               onChange={(
@@ -401,7 +402,7 @@ export default class FormularioHr extends React.Component<
         <div className="ms-Grid-row">
         <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg6">
             <TextField
-              label="Documento"
+              label="Documento Nombre"
               id="doc"
               value={this.state.doc}
               onChange={(

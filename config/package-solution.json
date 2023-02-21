@@ -3,7 +3,7 @@
   "solution": {
     "name": "buscador-hr",
     "id": "f1cb698b-1530-434a-a7a5-ca4af5d01bd0",
-    "version": "1.0.0.0",
+    "version": "2.0.0.0",
     "includeClientSideAssets": true,
     "skipFeatureDeployment": true,
     "isDomainIsolated": false,

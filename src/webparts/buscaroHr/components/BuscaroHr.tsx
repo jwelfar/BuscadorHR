@@ -243,7 +243,7 @@ export default class BuscaroHr extends React.Component<
 
   private async getDocType(): Promise<void> {
     try {
-      const data = this.state.DatosHR.map((a) => {
+      const data = this.state.DatosHR.sort().map((a) => {
         return {
           key: a.field_8,
           text: a.field_8,
@@ -254,8 +254,26 @@ export default class BuscaroHr extends React.Component<
       docOptions.forEach((ele) => {
         array.push(JSON.parse(ele));
       });
+      const sortarray= array.sort((a, b) => {
+        // Extract the first character of each item
+        const aFirstChar = a.text.charAt(0).toLowerCase();
+        const bFirstChar = b.text.charAt(0).toLowerCase();
+      
+        // Compare the first characters and return -1, 0, or 1
+        if (aFirstChar < bFirstChar) {
+          return -1;
+        }
+        else if (aFirstChar > bFirstChar) {
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      });
+      
+
       this.setState({
-        docType: array,
+        docType: sortarray,
       });
     } catch (e) {
       e.res.json().then(() => {
